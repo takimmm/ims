@@ -1,0 +1,28 @@
+<div class="text-center">
+  <h1>im編集</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+    <%= form_with(model: @im) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      <div class="mb-3">
+        <%= f.label :real_name, '名前' %>
+        <%= f.text_field :real_name, class: 'form-control' %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :career, '経歴' %>
+        <%= f.text_field :career, class: 'form-control' %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :pastime, '趣味' %>
+        <%= f.text_field :pastime, class: 'form-control' %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :one_point, '一言' %>
+        <%= f.text_field :one_point, class: 'form-control' %>
+      </div>
+      <%= f.submit '編集', class: 'btn btn-primary w-100' %>
+    <% end %>
+  </div>
+</div>

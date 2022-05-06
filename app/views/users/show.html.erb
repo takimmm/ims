@@ -1,0 +1,29 @@
+<div class="row">
+  <aside class="col-sm-6">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><%= @user.name %></h3>
+      </div>
+      <div class="card-body">
+        <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+        <a href="<%= mylists_user_path %>" class="btn btn-primary mt-3">マイリスト</a>
+      </div>
+    </div>
+  </aside>
+  <div class="card col-sm-6">
+    <div class="card-header text-center">
+      <a href="<%= ims_path %>" class="btn btn-secondary w-60">みんなのimsを見る</a>
+    </div>
+    <div class="card-body">
+      名前:<br>
+      <%= @im.real_name %><br>
+      経歴:<br>
+      <%= @im.career %><br>
+      趣味:<br>
+      <%= @im.pastime %><br>
+      一言:<br>
+      <%= @im.one_point %><br>
+    </div>
+    <p><a href="<%= edit_im_path(@im) %>" class="btn btn-secondary w-30">編集</a></P>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<h3>みんなのim</h3>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">名前</th>
+            <th scope="col">一言</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @ims.each do |im| %>
+            <tr>
+              <td><%= link_to im.real_name, im_path(im) %></td>
+              <td><%= im.one_point %></td>
+              <td>
+                <% if current_user.already_favorited?(im) %>
+                  <%= link_to 'マイリストから外す', im_favorites_path(im), method: :delete %>
+                <% else %>
+                  <%= link_to 'マイリスト登録', im_favorites_path(im), method: :post %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%== pagy_bootstrap_nav(@pagy) %>
