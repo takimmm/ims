@@ -15,7 +15,6 @@ class ImsController < ApplicationController
   end
 
   def update
-    @user = current_user
     @im = Im.find(params[:id])
     
     if @im.update(im_params)
@@ -51,10 +50,8 @@ class ImsController < ApplicationController
   end
   
   def correct_user
-    @im = current_user.im.find_by(id: params[:id])
-    unless @im
-      redirect_to root_url
-    end
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless @user == current_user
   end
 
 end
