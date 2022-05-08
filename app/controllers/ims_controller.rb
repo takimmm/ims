@@ -1,5 +1,7 @@
 class ImsController < ApplicationController
   before_action :require_user_logged_in, except: [:create, :new]
+  before_action :correct_user, only: [:edit, :update]
+ 
   def create
     @user = current_user
     @im = current_user.build_im(im_params)
@@ -16,7 +18,7 @@ class ImsController < ApplicationController
     @user = current_user
     @im = Im.find(params[:id])
     
-    if @im.save
+    if @im.update(im_params)
       flash[:success] = 'imを編集しました。'
       redirect_to @user
     else
@@ -47,4 +49,12 @@ class ImsController < ApplicationController
   def im_params
     params.require(:im).permit(:real_name, :career, :pastime, :one_point)
   end
+  
+  def correct_user
+    @im = current_user.im.find_by(id: params[:id])
+    unless @im
+      redirect_to root_url
+    end
+  end
+
 end
